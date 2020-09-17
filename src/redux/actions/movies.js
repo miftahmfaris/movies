@@ -1,0 +1,4 @@
+const GET_MOVIES = "GET_MOVIES";
+const GET_MOVIES_BY_ID = "GET_MOVIES_BY_ID";
+
+export { GET_MOVIES, GET_MOVIES_BY_ID };
