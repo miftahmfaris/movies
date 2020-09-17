@@ -1,14 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 function PrivateRoute({ children, ...rest }) {
-    const token = localStorage.getItem("token");
+    const members = useSelector((state) => state.members);
 
     return (
         <Route
             {...rest}
             render={({ location }) =>
-                token !== "undefined" && token !== null ? (
+                members.name !== undefined ? (
                     children
                 ) : (
                     <Redirect

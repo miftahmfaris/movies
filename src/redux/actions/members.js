@@ -6,17 +6,32 @@ const LOGOUT = "LOGOUT";
 const login = (values, history) => async (dispatch) => {
     try {
         Swal.fire({
-            title: "Thank You for Coming",
+            title: "Welcome",
             text: "Please Enjoy",
             icon: "success",
         });
-        localStorage.setItem("token", true);
-        history.push("/movies");
 
         dispatch({ type: GET_MEMBER, payload: values });
+
+        history.push("/movies");
     } catch (error) {
         console.log(error);
     }
 };
 
-export { GET_MEMBER, LOGOUT, login };
+const logout = (history) => async (dispatch) => {
+    try {
+        Swal.fire({
+            title: "Thank You for Coming",
+            icon: "success",
+        });
+
+        dispatch({ type: LOGOUT });
+
+        history.push("/");
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export { GET_MEMBER, LOGOUT, login, logout };
