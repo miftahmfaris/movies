@@ -5,7 +5,7 @@ const initialState = {};
 export default (state = initialState, actions) => {
     switch (actions.type) {
         case GET_MEMBER:
-            return { ...state };
+            return actions.payload;
         case LOGOUT:
             return {};
         default:
