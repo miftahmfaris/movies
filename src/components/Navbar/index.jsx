@@ -30,7 +30,10 @@ export default function MemberNavbar() {
                                 }}
                                 href="#/"
                             >
-                                Hi, {member.name}
+                                Hi,{" "}
+                                <span style={{ textTransform: "capitalize" }}>
+                                    {member.name}
+                                </span>
                             </Nav.Link>
                             <Nav.Link as={Link} to="/movies">
                                 Movies List
