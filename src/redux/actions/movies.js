@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 
 const GET_MOVIES = "GET_MOVIES";
 const GET_MOVIES_BY_ID = "GET_MOVIES_BY_ID";
+const GET_FAVOURITE_MOVIES = "GET_FAVOURITE_MOVIES";
 
 const search = (search) => async (dispatch) => {
     try {
@@ -13,7 +14,7 @@ const search = (search) => async (dispatch) => {
         const response = await fetch(url, options);
         const result = await response.json();
 
-        dispatch({ type: GET_MOVIES, payload: result.data });
+        dispatch({ type: GET_MOVIES, payload: result.Search });
     } catch (error) {
         Swal.fire({
             title: "Something Error",
@@ -23,4 +24,23 @@ const search = (search) => async (dispatch) => {
     }
 };
 
-export { GET_MOVIES, GET_MOVIES_BY_ID, search };
+const favourite = (id, history) => async (dispatch) => {
+    try {
+        dispatch({ type: GET_FAVOURITE_MOVIES, payload: id });
+        history.push("/favourite");
+    } catch (error) {
+        Swal.fire({
+            title: "Something Error",
+            text: "Contact Admin",
+            icon: "error",
+        });
+    }
+};
+
+export {
+    GET_MOVIES,
+    GET_MOVIES_BY_ID,
+    GET_FAVOURITE_MOVIES,
+    search,
+    favourite,
+};

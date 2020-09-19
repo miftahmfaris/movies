@@ -1,21 +1,24 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import { SearchForm } from "../components";
+import { SearchForm, TableMovies } from "../components";
 
 export default function Movies() {
     return (
         <Container>
+            <section>
+                <h1 style={{ textAlign: "center" }}>Search Movies here</h1>
+            </section>
             <Row className="justify-content-md-center">
                 <Col md={4}>
                     <section>
-                        <h1 style={{ textAlign: "center" }}>
-                            Search Movies here
-                        </h1>
                         <SearchForm />
                     </section>
                 </Col>
             </Row>
+            <section>
+                <TableMovies />
+            </section>
         </Container>
     );
 }
