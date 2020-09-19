@@ -1,14 +1,17 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import EmptyStar from "../../assets/images/empty-star.png";
 import FullStar from "../../assets/images/full-star.png";
+import { unFavourite } from "../../redux/actions";
 
 export default function Movies() {
     const favouriteMovies = useSelector(
         (state) => state.movies.favouriteMovies
     );
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     return (
         <Table striped bordered hover responsive>
@@ -32,18 +35,18 @@ export default function Movies() {
                                 <td>{item.Type}</td>
                                 <td>
                                     <div style={{ textAlign: "center" }}>
-                                        {item.favourite !== undefined &&
-                                        item.favourite ? (
-                                            <img
-                                                src={FullStar}
-                                                alt="favourtie"
-                                            />
-                                        ) : (
-                                            <img
-                                                src={EmptyStar}
-                                                alt="non-favourite"
-                                            />
-                                        )}
+                                        <img
+                                            src={FullStar}
+                                            alt="favourtie"
+                                            onClick={() =>
+                                                dispatch(
+                                                    unFavourite(
+                                                        item.imdbID,
+                                                        history
+                                                    )
+                                                )
+                                            }
+                                        />
                                     </div>
                                 </td>
                             </tr>

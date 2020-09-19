@@ -1,16 +1,18 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import EmptyStar from "../../assets/images/empty-star.png";
 import FullStar from "../../assets/images/full-star.png";
-import { favourite } from "../../redux/actions";
+import { favourite, unFavourite } from "../../redux/actions";
 
 export default function Movies() {
     const movies = useSelector((state) => state.movies.allMovies);
     const dispatch = useDispatch();
     const history = useHistory();
+    const { pathname } = useLocation();
+    const path = pathname.split("/")[1];
 
     return (
         <Table striped bordered hover responsive>
@@ -33,24 +35,34 @@ export default function Movies() {
                                 <td>{item.Year}</td>
                                 <td>{item.Type}</td>
                                 <td>
-                                    <div
-                                        style={{ textAlign: "center" }}
-                                        onClick={() =>
-                                            dispatch(
-                                                favourite(item.imdbID, history)
-                                            )
-                                        }
-                                    >
+                                    <div style={{ textAlign: "center" }}>
                                         {item.favourite !== undefined &&
                                         item.favourite ? (
                                             <img
                                                 src={FullStar}
                                                 alt="favourtie"
+                                                onClick={() =>
+                                                    dispatch(
+                                                        unFavourite(
+                                                            item.imdbID,
+                                                            history,
+                                                            path
+                                                        )
+                                                    )
+                                                }
                                             />
                                         ) : (
                                             <img
                                                 src={EmptyStar}
                                                 alt="non-favourite"
+                                                onClick={() =>
+                                                    dispatch(
+                                                        favourite(
+                                                            item.imdbID,
+                                                            history
+                                                        )
+                                                    )
+                                                }
                                             />
                                         )}
                                     </div>
