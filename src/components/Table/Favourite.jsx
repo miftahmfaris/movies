@@ -49,10 +49,6 @@ export default function Movies() {
                                     >
                                         Click
                                     </span>
-                                    <DetailModal
-                                        show={show}
-                                        handleClose={handleClose}
-                                    />
                                 </td>
                                 <td>
                                     <div style={{ textAlign: "center" }}>
@@ -73,6 +69,7 @@ export default function Movies() {
                             </tr>
                         );
                     })}
+                <DetailModal show={show} handleClose={handleClose} />
             </tbody>
         </Table>
     );
