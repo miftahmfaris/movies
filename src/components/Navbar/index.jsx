@@ -13,7 +13,7 @@ export default function MemberNavbar() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand as={Link} to="/movies">
-                Your-Movies
+                Seivom
             </Navbar.Brand>
             {member.name !== undefined && (
                 <React.Fragment>
