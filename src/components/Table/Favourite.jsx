@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import FullStar from "../../assets/images/full-star.png";
-import { unFavourite } from "../../redux/actions";
+import { movieByID, unFavourite } from "../../redux/actions";
+import DetailModal from "../Modal";
 
 export default function Movies() {
     const favouriteMovies = useSelector(
@@ -12,6 +13,10 @@ export default function Movies() {
     );
     const dispatch = useDispatch();
     const history = useHistory();
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <Table striped bordered hover responsive>
@@ -21,6 +26,7 @@ export default function Movies() {
                     <th>Title</th>
                     <th>Year</th>
                     <th>Type</th>
+                    <th>Detail</th>
                     <th>Favourite</th>
                 </tr>
             </thead>
@@ -33,6 +39,21 @@ export default function Movies() {
                                 <td>{item.Title}</td>
                                 <td>{item.Year}</td>
                                 <td>{item.Type}</td>
+                                <td>
+                                    <span
+                                        style={{ cursor: "pointer" }}
+                                        onClick={() => {
+                                            handleShow();
+                                            dispatch(movieByID(item.imdbID));
+                                        }}
+                                    >
+                                        Click
+                                    </span>
+                                    <DetailModal
+                                        show={show}
+                                        handleClose={handleClose}
+                                    />
+                                </td>
                                 <td>
                                     <div style={{ textAlign: "center" }}>
                                         <img

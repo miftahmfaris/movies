@@ -6,7 +6,7 @@ import {
     DELETE_FAVOURITE_MOVIES,
 } from "../actions";
 
-const initialState = { allMovies: [], moviesByID: {}, favouriteMovies: [] };
+const initialState = { allMovies: [], movieByID: {}, favouriteMovies: [] };
 
 export default (state = initialState, actions) => {
     switch (actions.type) {
@@ -18,7 +18,7 @@ export default (state = initialState, actions) => {
 
             return { ...state, allMovies: result };
         case GET_MOVIES_BY_ID:
-            return { ...state, moviesByID: actions.payload };
+            return { ...state, movieByID: actions.payload };
         case GET_FAVOURITE_MOVIES:
             const listMovies = state.allMovies;
             const index = state.allMovies.findIndex((item) => {

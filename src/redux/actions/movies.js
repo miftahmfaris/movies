@@ -39,13 +39,33 @@ const favourite = (id, history) => async (dispatch) => {
     }
 };
 
-const unFavourite = (id, history, path) => async (dispatch) => {
+const unFavourite = (id, history, path) => (dispatch) => {
     try {
         dispatch({ type: DELETE_FAVOURITE_MOVIES, payload: id });
 
         path === "movies"
             ? history.push("/favourite")
             : history.push("/movies");
+    } catch (error) {
+        Swal.fire({
+            title: "Something Error",
+            text: "Contact Admin",
+            icon: "error",
+        });
+    }
+};
+
+const movieByID = (id) => async (dispatch) => {
+    try {
+        const url = `${process.env.REACT_APP_OMDB_API}&plot=full&i=${id}`;
+        const options = {
+            method: "GET",
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        dispatch({ type: GET_MOVIES_BY_ID, payload: result });
     } catch (error) {
         Swal.fire({
             title: "Something Error",
@@ -63,4 +83,5 @@ export {
     search,
     favourite,
     unFavourite,
+    movieByID,
 };
