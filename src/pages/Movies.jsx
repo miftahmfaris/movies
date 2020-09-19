@@ -7,7 +7,7 @@ export default function Movies() {
     return (
         <Container>
             <Row className="justify-content-md-center">
-                <Col>
+                <Col md={4}>
                     <section>
                         <h1 style={{ textAlign: "center" }}>
                             Search Movies here

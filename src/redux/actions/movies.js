@@ -5,15 +5,9 @@ const GET_MOVIES_BY_ID = "GET_MOVIES_BY_ID";
 
 const search = (search) => async (dispatch) => {
     try {
-        const token = localStorage.getItem("token");
         const url = `${process.env.REACT_APP_OMDB_API}&s=${search}`;
         const options = {
             method: "GET",
-            headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${token}`,
-                "Access-Control-Allow-Headers": "*",
-            },
         };
 
         const response = await fetch(url, options);

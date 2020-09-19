@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <Container>
             <Row className="justify-content-md-center">
-                <Col>
+                <Col md={4}>
                     <section>
                         <h1 style={{ textAlign: "center" }}>
                             Welcome to Your-Movies
